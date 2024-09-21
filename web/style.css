@@ -1,0 +1,218 @@
+       /* Styles généraux */
+       body {
+        font-family: 'Courier New', Courier, monospace;
+        background: linear-gradient(135deg, #1e1e2f, #3d3d60);
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(8px);
+        max-width: 800px;
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    h1 {
+        font-size: 36px;
+        margin-bottom: 30px;
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #ffffff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .section {
+        margin: 30px 0;
+    }
+
+    .embed {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        font-size: 22px;
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #ffffff;
+    }
+
+    input {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .footer {
+        margin-top: 40px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Animation d’apparition */
+    .container, h1, .section {
+        opacity: 0;
+        animation: fadeIn 1.5s ease-in-out forwards;
+    }
+
+    h1 {
+        animation-delay: 0.2s;
+    }
+
+    .section {
+        animation-delay: 0.5s;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+
+/* page principal */
+
+        
+/* Styles généraux */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background: linear-gradient(135deg, #1e1e2f, #3d3d60);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    max-width: 600px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.desktop-icon {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    text-align: center;
+    transition: transform 0.3s, background-color 0.3s;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.desktop-icon:hover {
+    transform: translateY(-10px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon-img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.icon-label {
+    font-size: 14px;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Footer */
+.footer {
+    margin-top: 40px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Animation d’apparition */
+.container, h1, .desktop-icon {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+h1 {
+    animation-delay: 0.2s;
+}
+
+.desktop-icon {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+ 

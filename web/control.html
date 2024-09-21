@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Bot - Admin Panel</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, #1e1e2f, #3d3d60);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            max-width: 900px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px; /* Ajout d'espace entre les sections */
+        }
+
+        .section {
+            margin: 15px 0;
+            flex: 1 1 45%;
+            box-sizing: border-box;
+            max-width: 400px; /* Largeur maximale pour chaque section */
+            min-height: 350px; /* Hauteur minimale pour uniformiser les sections */
+        }
+
+        .embed {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animation d’apparition */
+        .container, h1, .section {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        h1 {
+            animation-delay: 0.2s;
+        }
+
+        .section {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Pour les écrans plus petits (smartphones, tablettes) */
+        @media (max-width: 768px) {
+            .section-container {
+                flex-direction: column;
+            }
+
+            .section {
+                flex: 1 1 100%; /* Les sections prennent 100% de la largeur en mode mobile */
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Control Panel</h1>
+
+        <div class="section-container">
+            <!-- Catégorie : Gestion des Utilisateurs -->
+            <div class="section">
+                <h2>Gestion des Utilisateurs</h2>
+                <div class="embed">
+                    <h3>Ban Utilisateur</h3>
+                    <div class="input-group">
+                        <label for="banUserId">ID à bannir :</label>
+                        <input type="text" id="banUserId" placeholder="Entrez l'ID de l'utilisateur">
+                        <button id="ban-btn" onclick="banUser()">Ban</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie : Nettoyage des Canaux -->
+            <div class="section">
+                <h2>Gestion du Nettoyage</h2>
+                <div class="embed">
+                    <h3>Nettoyer un Canal</h3>
+                    <div class="input-group">
+                        <label for="clearChannelId">ID du canal :</label>
+                        <input type="text" id="clearChannelId" placeholder="Entrez l'ID du canal">
+                        <label for="clearAmount">Nombre de messages à supprimer :</label>
+                        <input type="number" id="clearAmount" placeholder="Nombre de messages" min="1">
+                        <button id="clear-btn" onclick="clearMessages()">Nettoyer</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie : Gestion des Messages -->
+            <div class="section">
+                <h2>Gestion des Messages</h2>
+                <div class="embed">
+                    <h3>Envoyer un Message</h3>
+                    <div class="input-group">
+                        <label for="sendChannelId">ID du canal :</label>
+                        <input type="text" id="sendChannelId" placeholder="Entrez l'ID du canal">
+                        <label for="messageContent">Message à envoyer :</label>
+                        <input type="text" id="messageContent" placeholder="Entrez votre message">
+                        <button id="message-btn" onclick="sendMessage()">Envoyer</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nouvelle section : Gestion des Embeds -->
+            <div class="section">
+                <h2>Gestion des Embeds</h2>
+                <div class="embed">
+                    <h3>Envoyer un Embed</h3>
+                    <div class="input-group">
+                        <label for="embedChannelId">ID du canal :</label>
+                        <input type="text" id="embedChannelId" placeholder="Entrez l'ID du canal">
+                        <label for="embedTitle">Titre de l'embed :</label>
+                        <input type="text" id="embedTitle" placeholder="Entrez le titre de l'embed">
+                        <label for="embedDescription">Description de l'embed :</label>
+                        <textarea id="embedDescription" rows="4" placeholder="Entrez la description de l'embed"></textarea>
+                        <label for="embedColor">Couleur de l'embed :</label>
+                        <input type="color" id="embedColor" value="#FFFFFF">
+                        <button id="embed-btn" onclick="sendEmbed()">Envoyer Embed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 Bot Control Dashboard - Tous droits réservés.</p>
+        </div>
+    </div>
+
+    <script src="control.js"></script>
+
+</body>
+</html>

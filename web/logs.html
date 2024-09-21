@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Logs du Bot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        #logs {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 10px;
+            height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+        .options {
+            margin-bottom: 10px;
+        }
+
+        .options label {
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Logs du Bot Discord</h1>
+
+        <div class="options">
+            <label for="logLevel">Niveau de log :</label>
+            <select id="logLevel">
+                <option value="all">Tous</option>
+                <option value="info">Info</option>
+                <option value="error">Erreur</option>
+                <option value="warning">Avertissement</option>
+            </select>
+            <button id="clearLogs">Effacer les logs</button>
+        </div>
+
+        <div id="logs">
+            <!-- Les logs du bot seront affichés ici -->
+        </div>
+    </div>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Logs five m</h1>
+
+        <div class="options">
+            <label for="logLevel">Niveau de log :</label>
+            <select id="logLevel">
+                <option value="all">Tous</option>
+                <option value="info">Info</option>
+                <option value="error">Erreur</option>
+                <option value="warning">Avertissement</option>
+            </select>
+            <button id="clearLogs">Effacer les logs</button>
+        </div>
+
+        <div id="logs">
+            <!-- Les logs du bot seront affichés ici -->
+        </div>
+    </div>
+
+    <script>
+        // Connexion au WebSocket (assure-toi que l'URL du WebSocket est correcte, 'localhost:3000' pour local)
+        const socket = new WebSocket('ws://localhost:3000');
+
+        socket.onopen = function() {
+            console.log('Connexion WebSocket établie avec succès.');
+            simulateLog('info', 'Connexion WebSocket ouverte.', 'Système');
+        };
+
+        socket.onmessage = function(event) {
+            console.log('Message reçu via WebSocket :', event.data);
+            try {
+                const logData = JSON.parse(event.data); // Les données reçues du WebSocket
+
+                // Vérification que le salon est bien présent dans les données
+                const salon = logData.salon ? logData.salon : 'Non spécifié';
+
+                // Ajoute les logs reçus avec le salon d'origine à la console
+                simulateLog(logData.type, logData.message, salon);
+            } catch (error) {
+                console.log('Erreur lors de l\'analyse du message WebSocket :', error);
+                simulateLog('error', 'Erreur d\'analyse du message WebSocket.', 'Système');
+            }
+        };
+
+        socket.onerror = function(error) {
+            console.log('Erreur WebSocket :', error);
+            simulateLog('error', 'Erreur WebSocket : ' + error.message, 'Système');
+        };
+
+        socket.onclose = function() {
+            simulateLog('warning', 'Connexion WebSocket fermée.', 'Système');
+        };
+
+        // Fonction pour afficher un log dans la console HTML
+        function simulateLog(type, message, salon) {
+            const logContainer = document.getElementById('logs');
+            const newLog = document.createElement('div');
+            newLog.textContent = `[${type.toUpperCase()}] [Salon: ${salon}] ${message}`;
+            logContainer.appendChild(newLog);
+            logContainer.scrollTop = logContainer.scrollHeight; // Garde la console déroulante en bas
+        }
+
+        // Ajout d'un événement pour le bouton Effacer les logs
+        document.getElementById('clearLogs').addEventListener('click', function() {
+            document.getElementById('logs').innerHTML = ''; // Vide le contenu de la console
+        });
+
+        // Filtrage des logs selon le niveau de log sélectionné
+        document.getElementById('logLevel').addEventListener('change', function() {
+            const selectedLevel = this.value;
+            const logs = document.querySelectorAll('#logs div');
+
+            logs.forEach(log => {
+                if (selectedLevel === 'all') {
+                    log.style.display = '';
+                } else if (!log.textContent.startsWith(`[${selectedLevel.toUpperCase()}]`)) {
+                    log.style.display = 'none';
+                } else {
+                    log.style.display = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

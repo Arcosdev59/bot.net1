@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrôle de Bot Discord</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, #1e1e2f, #3d3d60);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            padding: 10px;
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: flex-end;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transform: translateX(-1.5cm); /* Déplacement de 1.5 cm vers la gauche */
+        }
+
+        .navbar form {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar input[type="text"],
+        .navbar input[type="password"] {
+            padding: 5px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(233, 223, 223, 0.1);
+            color: #fff;
+            outline: none;
+        }
+
+        .navbar input[type="submit"] {
+            padding: 15px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Styles du conteneur */
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .desktop-icon {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .desktop-icon:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .icon-img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .icon-label {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animation d’apparition */
+        .container,
+        h1,
+        .desktop-icon {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        h1 {
+            animation-delay: 0.2s;
+        }
+
+        .desktop-icon {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barre de navigation avec le formulaire de connexion -->
+    <div class="navbar">
+        <form action="/login" method="post">
+            <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
+            <input type="submit" value="Connexion">
+        </form>
+    </div>
+
+    <div class="container">
+        <h1>arcos Développement</h1>
+
+        <div class="desktop-icons">
+            <a href="control.html">
+                <div class="desktop-icon">
+                    <img src="https://img.icons8.com/ios-filled/100/ffffff/control-panel.png" class="icon-img" alt="Contrôler le bot">
+                    <div class="icon-label">Contrôler le bot</div>
+                </div>
+            </a>
+
+            <a href="/logs.html">
+                <div class="desktop-icon">
+                    <div class="icon-label">Voir les logs</div>
+                </div>
+            </a>
+
+            <a href="/settings">
+                <div class="desktop-icon">
+                    <img src="https://img.icons8.com/ios-filled/100/ffffff/settings.png" class="icon-img" alt="Paramètres">
+                    <div class="icon-label">Paramètres</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 Arcos Développement - Tous droits réservés.</p>
+        </div>
+    </div>
+</body>
+
+</html>

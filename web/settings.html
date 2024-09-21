@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Bot - Admin Panel avec Paramètres</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, #1e1e2f, #3d3d60);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            max-width: 900px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section {
+            margin: 15px 0;
+            flex: 1 1 45%;
+            box-sizing: border-box;
+            max-width: 400px;
+            min-height: 350px;
+        }
+
+        .embed {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animation d’apparition */
+        .container, h1, .section {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        h1 {
+            animation-delay: 0.2s;
+        }
+
+        .section {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-container {
+                flex-direction: column;
+            }
+
+            .section {
+                flex: 1 1 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Control Panel</h1>
+
+        <div class="section-container">
+            <!-- Sections existantes... -->
+        </div>
+
+        <!-- Panel de Paramètres -->
+        <div class="section">
+            <h2>Paramètres du site</h2>
+            <div class="embed">
+                <h3>Personnaliser les couleurs et la police</h3>
+                <div class="input-group">
+                    <label for="bgColor">Couleur de fond :</label>
+                    <input type="color" id="bgColor" value="#1e1e2f">
+                </div>
+
+                <div class="input-group">
+                    <label for="textColor">Couleur du texte :</label>
+                    <input type="color" id="textColor" value="#ffffff">
+                </div>
+
+                <div class="input-group">
+                    <label for="fontFamily">Police :</label>
+                    <select id="fontFamily">
+                        <option value="'Courier New', Courier, monospace">Courier New</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                        <option value="Georgia, serif">Georgia</option>
+                        <option value="'Lucida Console', Monaco, monospace">Lucida Console</option>
+                    </select>
+                </div>
+
+                <button onclick="applySettings()">Appliquer</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 Bot Control Dashboard - Tous droits réservés.</p>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>
